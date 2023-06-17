@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+    background: linear-gradient(0.25turn, rgb(253, 232, 221), rgb(207, 207, 207));
+}
+.navig{
+    background: linear-gradient(0.25turn, rgb(0, 0, 0), rgb(41, 41, 41));
+  
+    @apply py-3 text-2xl text-white font-montserrat flex z-50 justify-around uppercase sticky top-0
+}
