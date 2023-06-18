@@ -27,7 +27,7 @@ export default function History() {
       <h1 className="text-4xl font-montserrat mb-5">History</h1>
       {history
       ?
-      <div className="flex flex-col justify-center items-center mx-3 w-full px-3">
+      <div className="flex flex-col-reverse mx-3 w-full px-3">
         {history.map((hist) => <HistoryCard name={hist.name} dateStart={hist.dateStart} dateEnd={hist.dateEnd} />)}
       </div>
       : 
