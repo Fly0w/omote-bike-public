@@ -83,7 +83,6 @@ export default function Home() {
       setIsUsed(dataCur.isUsed)
       setCurrentUser(dataCur.user)
 
-      ///////
       const respHis = await fetch("/api/history", {
         method: "PATCH",
         body: JSON.stringify({
@@ -91,8 +90,6 @@ export default function Home() {
           dateEnd: date
         })
       })
-      ///////
-
 
     } catch (error) {
       console.log(error)
@@ -117,7 +114,9 @@ export default function Home() {
           {isUsed
         ?
         <div className="h-72 flex flex-col items-center justify-center align-middle">
-          <p className="mb-5">{currentUser} is using the bike now</p>
+          <p className="text-lg">The lock passcode is :</p>
+          <p className="font-bold text-3xl">5 3 9 0</p>
+          <p className="mb-5 text-lg"><span className="font-semibold">{currentUser}</span> is using the bike now</p>
           <button className="border-2 border-red-900 bg-red-600 text-2xl text-white font-bold rounded-full px-8 py-2" onClick={() => stopCount()}>Stop</button>
         </div>
         : 
