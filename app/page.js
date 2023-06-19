@@ -35,11 +35,13 @@ export default function Home() {
   } 
 
 // Function that will update the database to know is the bike is being used and by who.
+// Also create an entry in the "history" db with the date.
   const handleSubmit = async (e) => {
     e.preventDefault();
     const date = moment().format('llll');
 
     try {
+      // Updates the db to change the state "isUsed" to true
       const respCur = await fetch("/api/current", {
         method: "PATCH",
         body: JSON.stringify({
@@ -47,7 +49,7 @@ export default function Home() {
           user: nameInput
         })
       })
-
+      // Creates an entry in the history db with the name and starting date
       const respHis = await fetch("/api/history", {
         method: "POST",
         body: JSON.stringify({
@@ -58,10 +60,11 @@ export default function Home() {
       
       const dataCur = await respCur.json()
 
+      // Sets the state "isUsed" to true right after pressing the button, because doesnt need the resp from the server
       setIsUsed(dataCur.isUsed)
       setCurrentUser(dataCur.user)
 
-      console.log(dataHis)
+      // console.log(dataHis)
     } catch (error) {
       console.log(error)
     }
@@ -72,6 +75,9 @@ export default function Home() {
   const stopCount = async () => {
     const date = moment().format('llll');
     try {
+      // Updates the db to change the state "isUsed" to false. The response object will be used to change the state of this app. 
+      // By doing so, it acts as a confirmation that the run has been succesfully stopped, instead of changing the state automatically like in
+      // the handleSubmit function
       const respCur = await fetch("/api/current", {
         method: "PATCH",
         body: JSON.stringify({
@@ -83,6 +89,7 @@ export default function Home() {
       setIsUsed(dataCur.isUsed)
       setCurrentUser(dataCur.user)
 
+      // Updates the entry in the history db with the name and ending date
       const respHis = await fetch("/api/history", {
         method: "PATCH",
         body: JSON.stringify({
@@ -90,11 +97,9 @@ export default function Home() {
           dateEnd: date
         })
       })
-
     } catch (error) {
       console.log(error)
     }
-
   }
   
   return (
@@ -108,16 +113,18 @@ export default function Home() {
           <li className=""><span className="font-bold">3.</span> Once you are done, click <span className="font-semibold">"Stop"</span></li>
         </ol>
       </div>
+      {/* Conditional rendering if the data from the DB has arrived or not */}
       {isLoading
       ? <p className="h-72 flex flex-col items-center justify-center align-middle text-xl">Loading...</p>
       : <div>
+        {/* Conditional rendering if the bike is being used or not */}
           {isUsed
         ?
         <div className="h-72 flex flex-col items-center justify-center align-middle">
           <p className="text-lg">The lock passcode is :</p>
           <p className="font-bold text-3xl">5 3 9 0</p>
           <p className="mb-5 text-lg"><span className="font-semibold">{currentUser}</span> is using the bike now</p>
-          <button className="border-2 border-red-900 bg-red-600 text-2xl text-white font-bold rounded-full px-8 py-2" onClick={() => stopCount()}>Stop</button>
+          <button className="button_stop" onClick={() => stopCount()}>Stop</button>
         </div>
         : 
         <form className="h-72 form flex flex-col justify-center items-center" onSubmit={(e) => handleSubmit(e)}>
@@ -128,18 +135,17 @@ export default function Home() {
                 type="text"
                 required
                 placeholder="Type your name here"
-                className="h-10 px-3 border border-teal-950 focus:outline-2 focus:outline-cyan-700 rounded-full text-slate-700 font-semibold text-center mb-5"
+                className="name_insert"
                 onChange={(e) => setNameInput(e.target.value)}></input>
             </div>
           </label>
 
-          <button type="submit" className="border-2 border-emerald-900 bg-emerald-400 text-2xl text-white font-bold rounded-full px-8 py-2">Start</button>
+          <button type="submit" className="button_start">Start</button>
         </form>
         }
       </div>
       }
-      
-
+    
       <h1 className="text-xl mb-10 text-center px-10">Before using, please make sure to read the rules about how to use the shared bike
         <Link href="/rules">
           <span className="text-teal-500 font-bold"> here</span>
@@ -147,10 +153,6 @@ export default function Home() {
       </h1>
 
       <p className="text-center">Contact : Florian Budniewski</p>
-
-
-
-
     </main>
   )
 }

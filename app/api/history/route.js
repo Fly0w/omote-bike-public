@@ -9,10 +9,14 @@ export const GET = async (req) => {
         console.log("Get History")
 
         const history = await History.find()
+
+        // Check if the history list exists
         if(!history){
             return new Response("Could not find history", {status: 500})
         }
-        
+
+
+        // Return a response with the list of all the entries from the history list
         return new Response(JSON.stringify(history), {status: 200})
 
     } catch (error) {
@@ -48,18 +52,23 @@ export const POST = async (req) => {
 
 //Endpoint to Update an entry history in the db
 export const PATCH = async (req) => {
-    const { name, dateEnd } = await req.json()
+    const { name, dateEnd, dateStart } = await req.json()
     try {
         await connectToDB();
 
         console.log("Updating entry History")
 
-        const history = await History.findOne({name : name})
+        // Find the latest history entry with the name in req  
+        const history = await History.findOne({name: name, dateEnd : ""})
 
+        // console.log(history)
+
+        // Check if the history entry exists
         if(!history){
             return new Response("Could not find history", {status: 500})
         }
 
+        // Updates the dateEnd with the req
         history.dateEnd = dateEnd
         await history.save()
         

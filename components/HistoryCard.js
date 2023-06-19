@@ -1,4 +1,4 @@
-
+// Card for the history page
 const HistoryCard = ({name, dateStart, dateEnd}) => {
 
   return (

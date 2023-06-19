@@ -10,10 +10,12 @@ export const GET = async (req) => {
 
         const current = await Current.findOne()
 
+        // Check if the entry exists
         if(!current){
             return new Response("Could not find entry", {status: 500})
         }
         
+        // Sends a response with the current state
         return new Response(JSON.stringify(current), {status: 200})
 
     } catch (error) {
@@ -31,10 +33,12 @@ export const PATCH = async (req) => {
 
         const current = await Current.findOne()
 
+        // Check if the entry exists
         if(!current){
             return new Response("Could not find entry", {status: 500})
         }
 
+        // Updates the state
         current.isUsed = isUsed;
         current.user = user;
 

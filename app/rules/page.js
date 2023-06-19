@@ -1,4 +1,4 @@
-
+// The rules page
 export default function Rules() {
   return (
     <main className="px-8 flex flex-col items-center justify-center mt-4 font-montserrat mb-10">

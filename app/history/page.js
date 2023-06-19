@@ -10,7 +10,8 @@ export default function History() {
     getHistory()
   }, [])
   
-
+// Function that gets all the history from the API and push it
+// to the state of this component
   const getHistory = async () => {
     try {
       const resp = await fetch("/api/history")
@@ -33,7 +34,6 @@ export default function History() {
       : 
       <p>Loading</p>
       }
-
     </main>
   )
 }
