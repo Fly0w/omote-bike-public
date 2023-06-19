@@ -2,7 +2,7 @@
 
 Omote-Bike is a NextJS mobile web app to help keeping track of a sharehouse common bike, with easy timestamping and history tracking.
 
-![](https://github.com/Fly0w/Promptopia/blob/main/Media/Promptopia%20preview.gif)
+![](https://github.com/Fly0w/omote-bike/blob/main/Media/Omote%20Bike%20home.gif)
 
 
 ## Features
@@ -56,7 +56,7 @@ It will then decide to display the "Start" interface, or the "Stop" interface
 Because the app fetches the information about the bike to know which interface it has to render, the app will display a simple "Loading" text while the data is being fetched.
 Once the data is here, the Start/Stop interface can be displayed accordingly.
 
-![](https://github.com/Fly0w/OmoteBike/blob/main/Media/Promptopia%20preview.gif)
+![](https://github.com/Fly0w/omote-bike/blob/main/Media/Omote%20Bike%20loading.gif)
 
 ### History
 
@@ -71,4 +71,4 @@ import HistoryCard from "@/components/HistoryCard"
  {history.map((hist) => <HistoryCard *Props* />)}
 </div>
 ```
-![](https://github.com/Fly0w/OmoteBike/blob/main/Media/Promptopia%20preview.gif)
+![](https://github.com/Fly0w/omote-bike/blob/main/Media/Omote%20Bike%20history.gif)
