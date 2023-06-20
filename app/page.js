@@ -122,7 +122,7 @@ export default function Home() {
         ?
         <div className="h-72 flex flex-col items-center justify-center align-middle">
           <p className="text-lg">The lock passcode is :</p>
-          <p className="font-bold text-3xl">5 3 9 0</p>
+          <p className="font-bold text-3xl">4 2 7 1</p>
           <p className="mb-5 text-lg"><span className="font-semibold">{currentUser}</span> is using the bike now</p>
           <button className="button_stop" onClick={() => stopCount()}>Stop</button>
         </div>
