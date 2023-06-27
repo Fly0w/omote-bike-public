@@ -49,3 +49,22 @@ export const PATCH = async (req) => {
         return new Response("Error while Updating entry", {status: 500})
     }
 }
+
+// Endpoint to initialize the current state of the bike
+// export const POST = async (req) => {
+//     const { isUsed, user } = await req.json()
+//     try {
+//         await connectToDB();
+
+//         const current = new Current ({
+//             isUsed : isUsed,
+//             user : user
+//         })
+
+//         await current.save()
+        
+//         return new Response(JSON.stringify(current), {status: 200})
+//     } catch (error) {
+//         return new Response("Error while Updating entry", {status: 500})
+//     }
+// }

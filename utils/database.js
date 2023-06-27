@@ -14,7 +14,7 @@ export const connectToDB = async () => {
     try {
         // Connecting to the database "OmoteBike"
         await mongoose.connect(process.env.MONGODB_URI, {
-                dbName: "OmoteBike",
+                dbName: "OmoteBike_public",
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
             })
