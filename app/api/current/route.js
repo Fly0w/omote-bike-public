@@ -50,15 +50,18 @@ export const PATCH = async (req) => {
     }
 }
 
-// Endpoint to initialize the current state of the bike
+
+
+// Endpoint to initialize the current state of the bike, do not use
 // export const POST = async (req) => {
-//     const { isUsed, user } = await req.json()
+//     const { isUsed, user, passcode } = await req.json()
 //     try {
 //         await connectToDB();
 
 //         const current = new Current ({
 //             isUsed : isUsed,
-//             user : user
+//             user : user,
+//             passcode : passcode
 //         })
 
 //         await current.save()

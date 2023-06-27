@@ -7,6 +7,7 @@ import moment from "moment/moment";
 export default function Home() {
   const [isUsed, setIsUsed] = useState(true)
   const [currentUser, setCurrentUser] = useState("")
+  const [passCode, setPassCode] = useState("")
   const [nameInput, setNameInput] = useState("")
   const [isLoading, setIsLoading] = useState(true)
 
@@ -24,6 +25,7 @@ export default function Home() {
       const data = await resp.json()
       setIsUsed(data.isUsed)
       setCurrentUser(data.user)
+      setPassCode(data.passcode)
 
       if(data){
         setIsLoading(false)
@@ -33,6 +35,24 @@ export default function Home() {
       console.log(error)
     }
   } 
+
+  // Function to initiate current state in the database, do not use
+  // const createInfo1 = async () => {
+  //   try {
+  //     const resp = await fetch("/api/current", {
+  //       method: "POST",
+  //       body: JSON.stringify({
+  //         isUsed: false,
+  //         user: "",
+  //         passcode:"1 2 3 4"
+  //       })
+  //     })
+  //     const data = await resp.json()
+
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
 
 // Function that will update the database to know is the bike is being used and by who.
 // Also create an entry in the "history" db with the date.
@@ -105,6 +125,7 @@ export default function Home() {
   return (
     <main className="font-montserrat mt-10">
       <div className="flex flex-col justify-center items-center">
+      <h1 className="text-md text-center my-3 text-teal-600">This is a free testing, public version of Omotebike. Feel free to try it, you will not break it !</h1>
         <h1 className="text-5xl mb-5">Omote-Bike</h1>
         <p className="text-3xl mb-7">How to use ?</p>
         <ol className="text-xl ">
@@ -122,7 +143,7 @@ export default function Home() {
         ?
         <div className="h-72 flex flex-col items-center justify-center align-middle">
           <p className="text-lg">The lock passcode is :</p>
-          <p className="font-bold text-3xl">4 2 7 1</p>
+          <p className="font-bold text-3xl">{passCode}</p>
           <p className="mb-5 text-lg"><span className="font-semibold">{currentUser}</span> is using the bike now</p>
           <button className="button_stop" onClick={() => stopCount()}>Stop</button>
         </div>

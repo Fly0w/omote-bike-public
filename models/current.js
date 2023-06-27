@@ -7,6 +7,9 @@ const CurrentSchema = new Schema({
     },
     user:{
         type: String,
+    },
+    passcode:{
+        type: String,
     }
 });
 
